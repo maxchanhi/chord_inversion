@@ -40,6 +40,6 @@ if check_ans and st.session_state["question_data_iv"]:
         st.balloons()
         rain(emo,animation_length=1)
     elif user_ans != correct_ans:
-        st.warning(f"The correct answer if {correct_ans}")
+        st.warning(f"The correct answer is {correct_ans}")
     else:
         st.error("Please try again.")
