@@ -24,7 +24,6 @@ with col1:
     user_nu = st.selectbox("Choose the Roman numeral:", options=roman_numerial)
     if st.button("New Question") and st.session_state["pressed_iv"]:
         st.session_state["pressed_iv"] = False
-        print(select_clef)
         st.session_state["question_data_iv"] = main_generation(st.session_state["clef_iv"])
         st.rerun()
 with col2:
