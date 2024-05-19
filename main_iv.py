@@ -4,12 +4,13 @@ from notation import roman_numerial, inversion_type,fun_emoji_list
 import random
 from streamlit_extras.let_it_rain import rain
 st.title("Inversion quiz")
-select_clef = st.selectbox("Select the clef that you want to test on:",options=["treble","bass","grand staff"],index=0)
-# Initialize session state variables
 if "question_data_iv" not in st.session_state:
     st.session_state["question_data_iv"] = None
 if "pressed_iv" not in st.session_state:
     st.session_state["pressed_iv"] = True
+if "clef_iv" not in st.session_state:
+    st.session_state["clef_iv"] = "treble"
+st.session_state["clef_iv"] = st.selectbox("Select the clef that you want to test on:",options=["treble","bass","grand staff"],index=0)
 
 try:
     key_signature = st.session_state["question_data_iv"]["key_sign"]
@@ -24,7 +25,7 @@ with col1:
     if st.button("New Question") and st.session_state["pressed_iv"]:
         st.session_state["pressed_iv"] = False
         print(select_clef)
-        st.session_state["question_data_iv"] = main_generation()
+        st.session_state["question_data_iv"] = main_generation(st.session_state["clef_iv"])
         st.rerun()
 with col2:
     user_iv = st.selectbox("Choose the inversion type:", options=inversion_type)
